@@ -1,5 +1,6 @@
 group 'com.pauldemarco.flutter_blue'
 version '1.0'
+import org.gradle.internal.os.OperatingSystem;
 
 buildscript {
     repositories {
@@ -40,8 +41,8 @@ android {
 
 protobuf {
     protoc {
-        if (project.hasProperty('protoc_platform')) {
-            artifact = "com.google.protobuf:protoc:3.11.4:${protoc_platform}"
+        if (OperatingSystem.current().isMacOsX()) {
+            artifact = "com.google.protobuf:protoc:3.11.4:osx-x86_64"
         } else {
             artifact = "com.google.protobuf:protoc:3.11.4"
         }
